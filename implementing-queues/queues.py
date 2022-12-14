@@ -2,6 +2,7 @@
 
 from collections import deque
 from heapq import heappop, heappush
+from dataclasses import dataclass
 
 class Iterable:
     def __len__(self):
