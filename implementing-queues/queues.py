@@ -1,6 +1,7 @@
 # implementing queues in python
 
 from collections import deque
+from heapq import heappop, heappush
 
 class Iterable:
     def _len_(self):
