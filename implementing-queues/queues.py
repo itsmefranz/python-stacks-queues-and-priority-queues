@@ -4,8 +4,9 @@ from collections import deque
 from heapq import heappop, heappush
 from dataclasses import dataclass
 from itertools import count
+from typing import Any
 
-class Iterable:
+class IterableMixin:
     def __len__(self):
         return len(self._elements)
 
@@ -13,7 +14,7 @@ class Iterable:
         while len(self) > 0:
             yield self.dequeue()
 
-class Queue(Iterable):
+class Queue(IterableMixin):
     def __init__(self, *elements):
         self._elements = deque(elements)
 
@@ -27,7 +28,7 @@ class Stack(Queue):
     def dequeue(self):
         return self._elements.pop()
 
-class PriorityQueue(Iterable):
+class PriorityQueue(IterableMixin):
     def __init__(self):
         self._elements = []
         self._counter = count()
