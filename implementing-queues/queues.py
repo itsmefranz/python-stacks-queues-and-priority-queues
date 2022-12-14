@@ -4,15 +4,15 @@ from collections import deque
 from heapq import heappop, heappush
 
 class Iterable:
-    def _len_(self):
+    def __len__(self):
         return len(self.elements)
 
-    def _iter_(self):
+    def __iter__(self):
         while len(self) > 0:
             yield self.dequeue()
 
 class Queue(Iterable):
-    def _init_(self, *elements):
+    def __init__(self, *elements):
         self.elements = deque(elements)
 
     def enqueue(self, element):
@@ -22,3 +22,6 @@ class Stack(Queue):
     def dequeue(self):
         return self._elements.pop()
 
+class PriorityQueue:
+    def __init__(self):
+        self.elements = []
