@@ -1,4 +1,4 @@
-from heapq import heappush
+from heapq import heappush, heappop
 
 fruits = []
 
@@ -7,3 +7,6 @@ heappush(fruits, "apple")
 heappush(fruits, " banana")
 
 print(fruits)
+
+#popping an element
+
