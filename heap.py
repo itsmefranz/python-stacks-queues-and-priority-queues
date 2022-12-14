@@ -9,4 +9,6 @@ heappush(fruits, " banana")
 print(fruits)
 
 #popping an element
+heappop(fruits)
 
+print(fruits)
