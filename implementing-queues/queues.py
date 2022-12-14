@@ -3,6 +3,7 @@
 from collections import deque
 from heapq import heappop, heappush
 from dataclasses import dataclass
+from itertools import count
 
 class Iterable:
     def __len__(self):
@@ -35,3 +36,4 @@ class PriorityQueue(Iterable):
 
     def dequeue(self):
         return heappop(self._elements)[1]
+
