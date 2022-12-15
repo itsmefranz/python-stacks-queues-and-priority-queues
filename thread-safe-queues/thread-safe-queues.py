@@ -1,3 +1,5 @@
+
+
 import argparse
 from queue import LifoQueue, PriorityQueue, Queue
 import threading
@@ -18,6 +20,29 @@ QUEUE_TYPES = {
     "lifo": LifoQueue,
     "heap": PriorityQueue
 }
+
+PRODUCTS = (
+    ":balloon:",
+    ":cookie:",
+    ":crystal_ball:",
+    ":diving_mask:",
+    ":flashlight:",
+    ":gem:",
+    ":gift:",
+    ":kite:",
+    ":party_popper:",
+    ":postal_horn:",
+    ":ribbon:",
+    ":rocket:",
+    ":teddy_bear:",
+    ":thread:",
+    ":yo-yo:",
+)
+
+class Priority(IntEnum):
+    HIGH = 1
+    MEDIUM = 2
+    LOW = 3
 
 def main(args):
     buffer = QUEUE_TYPES[args.queue]()
@@ -86,24 +111,6 @@ if __name__ == "__main__":
         main(parse_args())
     except KeyboardInterrupt:
         pass
-
-PRODUCTS = (
-    ":balloon:",
-    ":cookie:",
-    ":crystal_ball:",
-    ":diving_mask:",
-    ":flashlight:",
-    ":gem:",
-    ":gift:",
-    ":kite:",
-    ":party_popper:",
-    ":postal_horn:",
-    ":ribbon:",
-    ":rocket:",
-    ":teddy_bear:",
-    ":thread:",
-    ":yo-yo:",
-)
 
 class Worker(threading.Thread):
     def __init__(self, speed, buffer):
