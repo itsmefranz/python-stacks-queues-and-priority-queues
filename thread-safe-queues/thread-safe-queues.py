@@ -4,6 +4,8 @@ import threading
 from random import choice, randint
 from time import sleep
 from itertools import zip_longest
+from dataclasses import dataclass, field
+from enum import IntEnum
 
 from rich.align import Align
 from rich.columns import Columns
@@ -56,6 +58,12 @@ class View:
                 title = products = ""
 
         rows = [Panel(f"[bold]{title}:[/] {', '.join(products)}", width=82)]
+        pairs = zip_longest(self.producers, self.consumers)
+        for i, (producer, consumer) in enumerate(pairs, 1):
+            left_panel = self.panel(producer, f"Producer {i}")
+            right_panel = self.panel(consumer, f"Consumer {i}")
+            rows.append(Columns([left_panel, right_panel], width=40))
+        return Group(*rows)
 
     def panel(self, worker, title):
         if worker is None:
