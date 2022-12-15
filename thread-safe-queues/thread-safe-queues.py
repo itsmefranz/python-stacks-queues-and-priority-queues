@@ -55,6 +55,8 @@ class View:
             case _:
                 title = products = ""
 
+        rows = [Panel(f"[bold]{title}:[/] {', '.join(products)}", width=82)]
+
     def panel(self, worker, title):
         if worker is None:
             return ""
