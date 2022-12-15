@@ -3,7 +3,13 @@ from queue import LifoQueue, PriorityQueue, Queue
 import threading
 from random import choice, randint
 from time import sleep
+from itertools import zip_longest
 
+from rich.align import Align
+from rich.columns import Columns
+from rich.console import Group
+from rich.live import Live
+from rich.panel import Panel
 QUEUE_TYPES = {
     "fifo": Queue,
     "lifo": LifoQueue,
@@ -28,7 +34,7 @@ class View:
         self.consumers = consumers 
         self.consumers = consumers  
 
-     def animate(self):
+    def animate(self):
         with Live(self.render(), screen=True, refresh_per_second=10) as live:
             while True:
                 live.update(self.render())   
