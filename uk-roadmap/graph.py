@@ -30,14 +30,19 @@ def load_graph(filename, node_factory):
         for name1, name2, weights in graph.edges(data=True)
     )
 
-nodes, graph = load_graph("roadmap.dot", City.from_dict)
+def sort_by(neighbors, strategy):
+    return sorted(neighbors.items(), key=lambda item: strategy(item[1]))
+
+def by_distance(weights):
+    return float(weights["distance"])
+
 # print(nodes["london"])
 # print(graph)
     # City(name='City of London', country='England', year=None, latitude=51.507222, longitude=-0.1275)
     # Graph with 70 nodes and 137 edges
 
-for neighbor, weights in graph[nodes["london"]].items():
-    print(weights["distance"], neighbor.name)
+#for neighbor, weights in graph[nodes["london"]].items():
+    #print(weights["distance"], neighbor.name)
     #Bath
     #Brighton & Hove
     #Bristol        
@@ -53,3 +58,5 @@ for neighbor, weights in graph[nodes["london"]].items():
     #St Albans      
     #Westminster    
     #Winchester 
+
+nodes, graph = load_graph("roadmap.dot", City.from_dict)
