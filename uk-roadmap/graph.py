@@ -1,9 +1,6 @@
 import networkx  as nx
 from typing import NamedTuple
 
-graph = nx.nx_agraph.read_dot("roadmap.dot")
-graph.nodes["london"]
-
 class City(NamedTuple):
     name: str
     country: str
@@ -32,3 +29,7 @@ def load_graph(filename, node_factory):
         (nodes[name1], nodes[name2], weights)
         for name1, name2, weights in graph.edges(data=True)
     )
+
+nodes, graph = load_graph("roadmap.dot", City.from_dict)
+print(nodes["london"])
+print(graph)
