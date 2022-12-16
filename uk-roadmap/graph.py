@@ -1,6 +1,6 @@
 import networkx  as nx
-from graph import City, load_graph
 from typing import NamedTuple
+from queues import Queue
 
 class City(NamedTuple):
     name: str
@@ -40,6 +40,20 @@ def by_distance(weights):
 def is_twentieth_century(year):
     return year and 1901 <= year <= 2000
 
+def order(neighbors):
+    def by_latitude(city):
+        return city.latitude
+    return iter(sorted(neighbors, key=by_latitude, reverse=True))
+
+def breadth_first_traverse(graph, source):
+    queue = Queue(source)
+    visited = {source}
+    while queue:
+        yield (node := queue.dequeue())
+        for neighbor in graph.neighbors(node):
+            if neighbor not in visited:
+                visited.add(neighbor)
+                queue.enqueue(neighbor)
 
 nodes, graph = load_graph("roadmap.dot", City.from_dict)
 
@@ -60,11 +74,11 @@ nodes, graph = load_graph("roadmap.dot", City.from_dict)
     #print(f"{weights['distance']:>3} miles, {neighbor.name}")
 
 
-# BREADTH-FIRST ORDER OF TRAVERSAL
-for node in nx.bfs_tree(graph, nodes["edinburgh"]):
+# BREADTH FIRST SEARCH FOR 20TH CENTURY CITY
+for node in nx.bfs_tree(graph, nodes["edinburgh"], sort_neighbors=order):
     print("📍", node.name)
     if is_twentieth_century(node.year):
         print("Found:", node.name, node.year)
         break
     else:
-        print("Not found")
+         print("Not found")
