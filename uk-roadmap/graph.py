@@ -36,8 +36,8 @@ nodes, graph = load_graph("roadmap.dot", City.from_dict)
     # City(name='City of London', country='England', year=None, latitude=51.507222, longitude=-0.1275)
     # Graph with 70 nodes and 137 edges
 
-for neighbor in graph.neighbors(nodes["london"]):
-    print(neighbor.name)
+for neighbor, weights in graph[nodes["london"]].items():
+    print(weights["distance"], neighbor.name)
     #Bath
     #Brighton & Hove
     #Bristol        
