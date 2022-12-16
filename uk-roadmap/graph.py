@@ -39,6 +39,7 @@ def by_distance(weights):
 
 def is_twentieth_century(year):
     return year and 1901 <= year <= 2000
+
 def order(neighbors):
     def by_latitude(city):
         return city.latitude
@@ -71,14 +72,14 @@ def breadth_first_traverse(graph, source):
 #for neighbor, weights in sort_by(graph[nodes["london"]], by_distance):
     #print(f"{weights['distance']:>3} miles, {neighbor.name}")
 
+nodes, graph = load_graph("roadmap.dot", City.from_dict)
 
 # BREADTH FIRST SEARCH FOR 20TH CENTURY CITY
-#for node in nx.bfs_tree(graph, nodes["edinburgh"], sort_neighbors=order):
-#    print("📍", node.name)
-#    if is_twentieth_century(node.year):
-#        print("Found:", node.name, node.year)
-#        break
-#    else:
-#         print("Not found")
+for node in nx.bfs_tree(graph, nodes["edinburgh"], sort_neighbors=order):
+    print("📍", node.name)
+    if is_twentieth_century(node.year):
+        print("Found:", node.name, node.year)
+        break
+    else:
+         print("Not found")
 
-nodes, graph = load_graph("roadmap.dot", City.from_dict)
