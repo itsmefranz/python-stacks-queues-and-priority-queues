@@ -1,4 +1,5 @@
 import networkx  as nx
+from graph import City, load_graph
 from typing import NamedTuple
 
 class City(NamedTuple):
@@ -36,33 +37,36 @@ def sort_by(neighbors, strategy):
 def by_distance(weights):
     return float(weights["distance"])
 
-# print(nodes["london"])
-# print(graph)
+def is_twentieth_century(year):
+    return year and 1901 <= year <= 2000
+
+#print(nodes["london"])
+#print(graph)
     # City(name='City of London', country='England', year=None, latitude=51.507222, longitude=-0.1275)
     # Graph with 70 nodes and 137 edges
 
 #for neighbor, weights in graph[nodes["london"]].items():
-    #print(weights["distance"], neighbor.name)
-    #Bath
-    #Brighton & Hove
-    #Bristol        
-    #Cambridge      
-    #Canterbury     
-    #Chelmsford     
-    #Coventry       
-    #Oxford
-    #Peterborough   
-    #Portsmouth     
-    #Southampton    
-    #Southend-on-Sea
-    #St Albans      
-    #Westminster    
-    #Winchester 
+    # print(weights["distance"], neighbor.name)
+    # Bath
+    # Brighton & Hove
+    # Bristol        
+    # Cambridge      
+    # Canterbury     
+    # Chelmsford     
+    # Coventry       
+    # Oxford
+    # Peterborough   
+    # Portsmouth     
+    # Southampton    
+    # Southend-on-Sea
+    # St Albans      
+    # Westminster    
+    # Winchester 
 
 nodes, graph = load_graph("roadmap.dot", City.from_dict)
 
-for neighbor, weights in sort_by(graph[nodes["london"]], by_distance):
-    print(f"{weights['distance']:>3} miles, {neighbor.name}")
+#for neighbor, weights in sort_by(graph[nodes["london"]], by_distance):
+    #print(f"{weights['distance']:>3} miles, {neighbor.name}")
     # 1 miles, Westminster
     # 25 miles, St Albans      
     #  40 miles, Chelmsford     
@@ -78,3 +82,32 @@ for neighbor, weights in sort_by(graph[nodes["london"]], by_distance):
     # 100 miles, Coventry       
     # 115 miles, Bath
     # 118 miles, Bristol   
+
+for node in nx.bfs_tree(graph, nodes["edinburgh"]):
+    print("📍", node.name)
+    if is_twentieth_century(node.year):
+        print("Found:", node.name, node.year)
+        break
+    else:
+        print("Not found")
+
+        #📍 Edinburgh
+        #Not found
+        #📍 Dundee
+        #Not found
+        #📍 Glasgow
+        #Not found
+        #📍 Perth
+        #Not found
+        #📍 Stirling
+        #Not found
+        #📍 Carlisle
+        #Not found
+        #📍 Newcastle upon Tyne
+        #Not found
+        #📍 Aberdeen
+        #Not found
+        #📍 Inverness
+        #Not found
+        #📍 Lancaster
+        #Found: Lancaster 1937 
