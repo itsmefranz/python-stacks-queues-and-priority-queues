@@ -55,7 +55,6 @@ def breadth_first_traverse(graph, source):
                 visited.add(neighbor)
                 queue.enqueue(neighbor)
 
-nodes, graph = load_graph("roadmap.dot", City.from_dict)
 
 # READING DOT FILE TEST
 #graph = nx.nx_agraph.read_dot("roadmap.dot")
@@ -75,10 +74,12 @@ nodes, graph = load_graph("roadmap.dot", City.from_dict)
 
 
 # BREADTH FIRST SEARCH FOR 20TH CENTURY CITY
-for node in nx.bfs_tree(graph, nodes["edinburgh"], sort_neighbors=order):
-    print("📍", node.name)
-    if is_twentieth_century(node.year):
-        print("Found:", node.name, node.year)
-        break
-    else:
-         print("Not found")
+#for node in nx.bfs_tree(graph, nodes["edinburgh"], sort_neighbors=order):
+#    print("📍", node.name)
+#    if is_twentieth_century(node.year):
+#        print("Found:", node.name, node.year)
+#        break
+#    else:
+#         print("Not found")
+
+nodes, graph = load_graph("roadmap.dot", City.from_dict)
