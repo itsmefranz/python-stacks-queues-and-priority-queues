@@ -31,5 +31,25 @@ def load_graph(filename, node_factory):
     )
 
 nodes, graph = load_graph("roadmap.dot", City.from_dict)
-print(nodes["london"])
-print(graph)
+# print(nodes["london"])
+# print(graph)
+    # City(name='City of London', country='England', year=None, latitude=51.507222, longitude=-0.1275)
+    # Graph with 70 nodes and 137 edges
+
+for neighbor in graph.neighbors(nodes["london"]):
+    print(neighbor.name)
+    #Bath
+    #Brighton & Hove
+    #Bristol        
+    #Cambridge      
+    #Canterbury     
+    #Chelmsford     
+    #Coventry       
+    #Oxford
+    #Peterborough   
+    #Portsmouth     
+    #Southampton    
+    #Southend-on-Sea
+    #St Albans      
+    #Westminster    
+    #Winchester 
