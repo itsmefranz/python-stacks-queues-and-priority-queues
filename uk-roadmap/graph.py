@@ -60,3 +60,21 @@ def by_distance(weights):
     #Winchester 
 
 nodes, graph = load_graph("roadmap.dot", City.from_dict)
+
+for neighbor, weights in sort_by(graph[nodes["london"]], by_distance):
+    print(f"{weights['distance']:>3} miles, {neighbor.name}")
+    # 1 miles, Westminster
+    # 25 miles, St Albans      
+    #  40 miles, Chelmsford     
+    # 42 miles, Southend-on-Sea
+    # 53 miles, Brighton & Hove
+    # 58 miles, Oxford
+    # 61 miles, Cambridge      
+    # 62 miles, Canterbury     
+    # 68 miles, Winchester     
+    # 75 miles, Portsmouth     
+    # 79 miles, Southampton    
+    # 85 miles, Peterborough   
+    # 100 miles, Coventry       
+    # 115 miles, Bath
+    # 118 miles, Bristol   
