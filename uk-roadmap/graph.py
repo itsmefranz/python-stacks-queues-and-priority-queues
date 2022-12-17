@@ -41,6 +41,9 @@ def by_distance(weights):
 def is_twentieth_century(year):
     return year and 1901 <= year <= 2000
 
+def is_twentieth_century(city):
+    return city.year and 1901 <= city.year <= 2000
+
 def order(neighbors):
     def by_latitude(city):
         return city.latitude
