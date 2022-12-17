@@ -79,11 +79,15 @@ nodes, graph = load_graph("roadmap.dot", City.from_dict)
     #print(f"{weights['distance']:>3} miles, {neighbor.name}")
 
 # BREADTH FIRST SEARCH FOR 20TH CENTURY CITY
-for node in nx.bfs_tree(graph, nodes["edinburgh"], sort_neighbors=order):
-    print("📍", node.name)
-    if is_twentieth_century(node.year):
-        print("Found:", node.name, node.year)
-        break
-    else:
-         print("Not found")
+#for node in nx.bfs_tree(graph, nodes["edinburgh"], sort_neighbors=order):
+#    print("📍", node.name)
+#    if is_twentieth_century(node.year):
+#        print("Found:", node.name, node.year)
+#        break
+#    else:
+#         print("Not found")
+
+#CUSTOM MADE BREADTH FIRST SEARCH FUNCTION TEST
+for city in breadth_first_traverse(graph, nodes["edinburgh"]):
+    print(city.name)
 
