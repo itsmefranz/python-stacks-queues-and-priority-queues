@@ -160,6 +160,9 @@ def dijkstra_shortest_path(graph, source, destination, weight_factory):
 
     return retrace(previous, source, destination)
 
+def distance(weights):
+    return float(weights["distance"])
+
 nodes, graph = load_graph("roadmap.dot", City.from_dict)
 
 # READING DOT FILE TEST
