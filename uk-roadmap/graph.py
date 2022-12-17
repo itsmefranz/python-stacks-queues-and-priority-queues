@@ -139,5 +139,9 @@ nodes, graph = load_graph("roadmap.dot", City.from_dict)
 #city2 = nodes["perth"]
 #print(" → ".join(city.name for city in shortest_path(graph, city1, city2)))
 
-# SHORTEST PATH WITH PREFERENCE TO NEIGHBORS OF HIGHER LATITUDE TEST
+# SHORTEST PATH TO NEIGHBORS OF HIGHER LATITUDE TEST
 #print(" → ".join(city.name for city in shortest_path(graph, city1, city2, by_latitude)))
+
+# CONNECTED FUNCTION TEST
+print(connected(graph, nodes["belfast"], nodes["glasgow"]))
+print(connected(graph, nodes["belfast"], nodes["derry"]))
