@@ -135,9 +135,9 @@ nodes, graph = load_graph("roadmap.dot", City.from_dict)
 #    print(f"{i}.", " → ".join(city.name for city in path))
 
 # SHORTEST PATH NATURAL ORDER OF NEIGHBORS TEST
-city1 = nodes["aberdeen"]
-city2 = nodes["perth"]
+#city1 = nodes["aberdeen"]
+#city2 = nodes["perth"]
 #print(" → ".join(city.name for city in shortest_path(graph, city1, city2)))
 
 # SHORTEST PATH WITH PREFERENCE TO NEIGHBORS OF HIGHER LATITUDE TEST
-print(" → ".join(city.name for city in shortest_path(graph, city1, city2, by_latitude)))
+#print(" → ".join(city.name for city in shortest_path(graph, city1, city2, by_latitude)))
