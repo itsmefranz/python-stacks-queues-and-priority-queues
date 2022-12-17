@@ -1,6 +1,7 @@
 import networkx  as nx
 from typing import NamedTuple
 from queues import Queue
+from collections import deque
 
 class City(NamedTuple):
     name: str
@@ -77,6 +78,19 @@ def shortest_path(graph, source, destination, order_by=None):
                 if neighbor == destination:
                     return retrace(previous, source, destination)
 
+def retrace(previous, source, destination):
+    path = deque()
+
+    current = destination
+    while current != source:
+        path.appendleft(current)
+        current = previous.get(current)
+        if current is None:
+            return None
+
+    path.appendleft(source)
+    return list(path)
+
 nodes, graph = load_graph("roadmap.dot", City.from_dict)
 
 # READING DOT FILE TEST
@@ -108,8 +122,8 @@ nodes, graph = load_graph("roadmap.dot", City.from_dict)
 #for city in breadth_first_traverse(graph, nodes["edinburgh"]):
 #    print(city.name)
 
-city1 = nodes["aberdeen"]
-city2 = nodes["perth"]
+#city1 = nodes["aberdeen"]
+#city2 = nodes["perth"]
 
-for i, path in enumerate(nx.all_shortest_paths(graph, city1, city2), 1):
-    print(f"{i}.", " → ".join(city.name for city in path))
+#for i, path in enumerate(nx.all_shortest_paths(graph, city1, city2), 1):
+#    print(f"{i}.", " → ".join(city.name for city in path))
