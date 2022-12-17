@@ -55,6 +55,12 @@ def breadth_first_traverse(graph, source):
                 visited.add(neighbor)
                 queue.enqueue(neighbor)
 
+def breadth_first_search(graph, source, predicate):
+    for node in breadth_first_traverse(graph, source):
+        if predicate(node):
+            return node
+
+nodes, graph = load_graph("roadmap.dot", City.from_dict)
 
 # READING DOT FILE TEST
 #graph = nx.nx_agraph.read_dot("roadmap.dot")
@@ -71,8 +77,6 @@ def breadth_first_traverse(graph, source):
 # SORT NEIGHBOR WITH NODES WEIGHTS TEST
 #for neighbor, weights in sort_by(graph[nodes["london"]], by_distance):
     #print(f"{weights['distance']:>3} miles, {neighbor.name}")
-
-nodes, graph = load_graph("roadmap.dot", City.from_dict)
 
 # BREADTH FIRST SEARCH FOR 20TH CENTURY CITY
 for node in nx.bfs_tree(graph, nodes["edinburgh"], sort_neighbors=order):
