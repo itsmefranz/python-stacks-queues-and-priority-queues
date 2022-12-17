@@ -94,6 +94,9 @@ def retrace(previous, source, destination):
 def by_latitude(city):
     return -city.latitude
 
+def connected(graph, source, destination):
+    return shortest_path(graph, source, destination) is not None
+
 nodes, graph = load_graph("roadmap.dot", City.from_dict)
 
 # READING DOT FILE TEST
