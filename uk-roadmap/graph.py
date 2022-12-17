@@ -1,12 +1,9 @@
 import networkx  as nx
 from typing import NamedTuple
-from queues import Queue, Stack
+from queues import Queue, Stack, MutableMinHeap
 from collections import deque
-from graph import depth_first_search as dfs
-
-from graph import depth_first_search as dfs
 from math import inf as infinity
-from queues import MutableMinHeap, Queue, Stack
+
 
 class City(NamedTuple):
     name: str
@@ -149,14 +146,14 @@ def dijkstra_shortest_path(graph, source, destination, weight_factory):
     unvisited[source] = 0
 
     while unvisited:
-            visited.add(node := unvisited.dequeue())
-            for neighbor, weights in graph[node].items():
-                if neighbor not in visited:
-                    weight = weight_factory(weights)
-                    new_distance = unvisited[node] + weight
-                    if new_distance < unvisited[neighbor]:
-                        unvisited[neighbor] = new_distance
-                        previous[neighbor] = node
+        visited.add(node := unvisited.dequeue())
+        for neighbor, weights in graph[node].items():
+            if neighbor not in visited:
+                weight = weight_factory(weights)
+                new_distance = unvisited[node] + weight
+                if new_distance < unvisited[neighbor]:
+                    unvisited[neighbor] = new_distance
+                    previous[neighbor] = node
 
     return retrace(previous, source, destination)
 
@@ -226,5 +223,12 @@ nodes, graph = load_graph("roadmap.dot", City.from_dict)
 # for city in depth_first_traverse(graph, nodes["edinburgh"]):
 #     print(city.name)
 
-city = dfs(graph, nodes["edinburgh"], is_twentieth_century)
-print(city.name)
+#city = dfs(graph, nodes["edinburgh"], is_twentieth_century)
+#print(city.name)
+
+# TESTING DIJKSTRA’S ALGORITHM
+city1 = nodes["london"]
+city2 = nodes["edinburgh"]
+
+for city in dijkstra_shortest_path(graph, city1, city2, distance):
+    print(city.name)
