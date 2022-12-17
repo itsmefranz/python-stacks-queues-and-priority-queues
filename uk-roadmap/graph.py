@@ -2,6 +2,7 @@ import networkx  as nx
 from typing import NamedTuple
 from queues import Queue, Stack
 from collections import deque
+from graph import depth_first_search as dfs
 
 class City(NamedTuple):
     name: str
@@ -194,5 +195,8 @@ nodes, graph = load_graph("roadmap.dot", City.from_dict)
 
 
 # MODIFIED BREADTH FIRST SEARCH AND DEPTH FIRST SEARCH TEST
-for city in depth_first_traverse(graph, nodes["edinburgh"]):
-    print(city.name)
+# for city in depth_first_traverse(graph, nodes["edinburgh"]):
+#     print(city.name)
+
+city = dfs(graph, nodes["edinburgh"], is_twentieth_century)
+print(city.name)
