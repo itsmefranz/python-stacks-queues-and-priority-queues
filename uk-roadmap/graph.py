@@ -139,6 +139,15 @@ def search(traverse, graph, source, predicate, order_by=None):
         if predicate(node):
             return node
 
+def dijkstra_shortest_path(graph, source, destination, weight_factory):
+    previous = {}
+    visited = set()
+
+    unvisited = MutableMinHeap()
+    for node in graph.nodes:
+        unvisited[node] = infinity
+    unvisited[source] = 0
+
 nodes, graph = load_graph("roadmap.dot", City.from_dict)
 
 # READING DOT FILE TEST
