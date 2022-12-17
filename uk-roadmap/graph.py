@@ -1,6 +1,6 @@
 import networkx  as nx
 from typing import NamedTuple
-from queues import Queue
+from queues import Queue, Stack
 from collections import deque
 
 class City(NamedTuple):
