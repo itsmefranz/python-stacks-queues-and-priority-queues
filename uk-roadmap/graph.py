@@ -87,7 +87,12 @@ nodes, graph = load_graph("roadmap.dot", City.from_dict)
 #    else:
 #         print("Not found")
 
-#CUSTOM MADE BREADTH FIRST SEARCH FUNCTION TEST
-for city in breadth_first_traverse(graph, nodes["edinburgh"]):
-    print(city.name)
+# CUSTOM MADE BREADTH FIRST SEARCH FUNCTION TEST
+#for city in breadth_first_traverse(graph, nodes["edinburgh"]):
+#    print(city.name)
 
+city1 = nodes["aberdeen"]
+city2 = nodes["perth"]
+
+for i, path in enumerate(nx.all_shortest_paths(graph, city1, city2), 1):
+    print(f"{i}.", " → ".join(city.name for city in path))
